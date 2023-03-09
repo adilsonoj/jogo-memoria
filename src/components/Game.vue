@@ -20,7 +20,7 @@
 
 </template>
 <script setup>
-import { reactive, ref } from '@vue/reactivity';
+import { computed, reactive, ref } from '@vue/reactivity';
 import { nextTick } from 'vue';
 
 
@@ -82,6 +82,10 @@ const change = (card) => {
         }
     })
 }
+
+const winner = computed(()=>{
+    return cards.every(e => e.win)
+})
 
 const reset = ()=>{
     cards.forEach(e => {
