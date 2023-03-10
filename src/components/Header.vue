@@ -1,6 +1,7 @@
 <template>
   <header>
     <CountDown />
+    <span>Perdeu: {{ store.loser }}</span>
     <button @click="store.setAction('start')">INICIAR</button>
   </header>
 </template>
