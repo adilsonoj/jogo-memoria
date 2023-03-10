@@ -1,21 +1,33 @@
 <script setup>
 import { ref, computed } from '@vue/reactivity'
+import { watch } from 'vue';
+import { useCountDown } from "../store"
+import { storeToRefs } from 'pinia'
 
 defineProps({
-  msg: String,
+  stop: {
+    type: Boolean,
+    default: false,
+  },
 })
 
-const emit = defineEmits(['finish'])
+const store = useCountDown();
+const { reset, action } = storeToRefs(store)
+const initTime = 20;
 
-const count = ref(60)
+
+const emit = defineEmits(['finish'])
+let interval = null;
+
+const count = ref(initTime)
 const countDown = () => {
-  var x = setInterval(function () {
+  interval = setInterval(function () {
     --count.value
 
     if (count.value == 0) {
-      clearInterval(x);
+      clearInterval(interval);
       console.log("finish")
-      emit("finish");
+      store.setFinish(true);
     }
   }, 1000);
 }
@@ -31,12 +43,39 @@ const pulse = computed(() => {
     return "pulse3s"
 })
 
-countDown();
+watch(reset, (value) => {
+  console.log("listen winner")
+  if (value) {
+    clearInterval(interval);
+    count.value = initTime
+
+  }
+})
+
+watch(action, (value) => {
+  if (value == 'stop') {
+    count.value = initTime
+    return;
+  }
+  if (value == 'reset') {
+    store.setFinish(false);
+    clearInterval(interval);
+    count.value = initTime;
+    return;
+  }
+  if (value == 'start') {
+    // store.setFinish(false);
+    countDown();
+    return;
+  }
+})
+
+
 </script>
 
 <template>
   <div class="circle-timer pulse" :class="[pulse]">
-    <span class="time">{{ count }}</span>
+    <span class="time">{{ count || initTime }}</span>
     <span>Segundos</span>
   </div>
 </template>
@@ -45,13 +84,11 @@ countDown();
 .circle-timer {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 110px;
   height: 110px;
   border: solid 2px rgba(44, 204, 196, 0.4);
   border-radius: 50%;
-
-  /* box-shadow: 0 0 0 rgba(44, 204, 196, 0.4); */
-  /* animation: pulse 2s infinite; */
 }
 
 .time {
@@ -60,7 +97,6 @@ countDown();
 
 
 .pulse {
-  margin: 100px;
   box-shadow: 0 0 0 rgba(44, 204, 196, 0.4);
 
 }

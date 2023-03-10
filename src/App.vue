@@ -1,18 +1,17 @@
 <script setup>
-import CountDown from './components/CountDown.vue'
+import { ref } from 'vue';
+import Head from './components/Header.vue'
 import Game from './components/Game.vue'
+
+const stop = ref(false)
+const winner = () => {
+  stop.value = true
+  console.log('emit winner')
+}
 </script>
 
 <template>
-  <!-- <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-      </a>
-            <a href="https://vuejs.org/" target="_blank">
-              <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-            </a>
-          </div> -->
-  <CountDown msg="Vite + Vue" />
+  <Head />
   <Game />
 </template>
 
