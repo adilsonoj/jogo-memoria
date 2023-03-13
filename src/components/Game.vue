@@ -2,9 +2,7 @@
     <div class="winner-lottie" v-if="winner">
         <lottie-animation ref="anim" :animationData="confeti" />
     </div>
-
     <div class="container">
-        <!-- <button @click="reset">Reset</button> -->
         <div v-for="card in cards" class="card-container" :class="card.shake" id="card_container">
             <Transition name="flip">
                 <div class="card" v-show="card.open" @click="change(card)">
@@ -14,8 +12,7 @@
             <Transition name="flip">
                 <div class="card" v-show="!card.open" @click="change(card)">
 
-                    <img src="https://images.unsplash.com/photo-1588421357574-87938a86fa28?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-                        alt="" srcset="">
+                    <img src="../assets/fundo.jpeg">
                 </div>
             </Transition>
         </div>
@@ -29,7 +26,6 @@ import { nextTick, watch } from 'vue';
 import confeti from "../assets/lottie/confeti.json"
 import { useCountDown } from "../store"
 
-const emit = defineEmits(['winner'])
 const store = useCountDown();
 const { finish, action } = storeToRefs(store)
 
@@ -165,10 +161,13 @@ const change = (card) => {
     nextTick(() => {
         if (open.value.length == 2) {
             if (open.value[0].hash == open.value[1].hash) {
+                store.setCardStatus('success')
                 open.value[0].win = true
                 open.value[1].win = true
                 open.value = []
+                setTimeout(() => store.setCardStatus(''), 1500)
             } else {
+                store.setCardStatus('error')
                 open.value[0].shake = 'shake'
                 open.value[1].shake = 'shake'
                 setTimeout(() => {
@@ -177,8 +176,11 @@ const change = (card) => {
                     open.value[0].shake = ''
                     open.value[1].shake = ''
                     open.value = []
+                    store.setCardStatus('')
                 }, 1500)
             }
+
+
         }
     })
 }
@@ -195,9 +197,10 @@ watch(winner, (val) => {
     if (val) {
         // store.resetar(true);
         store.setAction('reset');
-        setTimeout(() => {
-            reset();
-        }, 3000)
+        open.value = []
+        // setTimeout(() => {
+        //     reset();
+        // }, 3000)
     }
 })
 
@@ -236,10 +239,7 @@ img {
 }
 
 .flip-enter-active {
-    /* transition: all 0.3s ease; */
     transition: all 0.3s ease;
-    --transform-style: preserve-3d;
-
 }
 
 .flip-leave-active {
@@ -252,13 +252,13 @@ img {
     opacity: 0;
 }
 
-
-
 .container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
+    position: relative;
+
 }
 
 .card-container {
@@ -284,7 +284,7 @@ img {
     height: 100vh;
     width: 100%;
     position: fixed;
-    top: 0;
+    top: 100;
     z-index: 100;
     margin: 0 auto;
 }
@@ -293,6 +293,8 @@ img {
     animation: shake 0.5s;
     animation-iteration-count: 1;
 }
+
+
 
 @keyframes shake {
     0% {
@@ -339,6 +341,8 @@ img {
         transform: translate(1px, -2px)
     }
 }
+
+
 
 @media (max-width: 600px) {
     .container {

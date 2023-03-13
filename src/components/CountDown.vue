@@ -4,16 +4,10 @@ import { watch } from 'vue';
 import { useCountDown } from "../store"
 import { storeToRefs } from 'pinia'
 
-defineProps({
-  stop: {
-    type: Boolean,
-    default: false,
-  },
-})
 
 const store = useCountDown();
 const { reset, action } = storeToRefs(store)
-const initTime = 20;
+const initTime = 60;
 
 
 const emit = defineEmits(['finish'])
@@ -21,6 +15,7 @@ let interval = null;
 
 const count = ref(initTime)
 const countDown = () => {
+  count.value = initTime;
   interval = setInterval(function () {
     --count.value
 
@@ -43,28 +38,28 @@ const pulse = computed(() => {
     return "pulse3s"
 })
 
-watch(reset, (value) => {
-  console.log("listen winner")
-  if (value) {
-    clearInterval(interval);
-    count.value = initTime
+// watch(reset, (value) => {
+//   console.log("listen winner")
+//   if (value) {
+//     clearInterval(interval);
+//     count.value = initTime
 
-  }
-})
+//   }
+// })
 
 watch(action, (value) => {
   if (value == 'stop') {
-    count.value = initTime
+    // count.value = initTime
     return;
   }
   if (value == 'reset') {
     store.setFinish(false);
     clearInterval(interval);
-    count.value = initTime;
+    // count.value = initTime;
     return;
   }
   if (value == 'start') {
-    // store.setFinish(false);
+    store.setFinish(false);
     countDown();
     return;
   }
@@ -75,7 +70,7 @@ watch(action, (value) => {
 
 <template>
   <div class="circle-timer pulse" :class="[pulse]">
-    <span class="time">{{ count || initTime }}</span>
+    <span class="time">{{ count }}</span>
     <span>Segundos</span>
   </div>
 </template>
