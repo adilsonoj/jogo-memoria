@@ -2,6 +2,9 @@
     <div class="winner-lottie" v-if="winner">
         <lottie-animation ref="anim" :animationData="confeti" />
     </div>
+    <div class="loser-lottie" v-if="loser">
+        <lottie-animation ref="anim" :animationData="loserLottie" style="width: 40%" />
+    </div>
     <div class="container">
         <div v-for="card in cards" class="card-container" :class="card.shake" id="card_container">
             <Transition name="flip">
@@ -11,7 +14,6 @@
             </Transition>
             <Transition name="flip">
                 <div class="card" v-show="!card.open" @click="change(card)">
-
                     <img src="../assets/fundo.jpeg">
                 </div>
             </Transition>
@@ -24,17 +26,23 @@ import { storeToRefs } from 'pinia';
 import { nextTick, watch } from 'vue';
 
 import confeti from "../assets/lottie/confeti.json"
+import loserLottie from "../assets/lottie/loser.json"
+import card1 from "../assets/cards/city_uberlandia.jpg"
+import card2 from "../assets/cards/patrimonio_uberlandia.jpg"
+import card3 from "../assets/cards/granja_marileusa_uberlandia.jpg"
+import card4 from "../assets/cards/Copacabana_uberlandia.jpg"
+import card5 from "../assets/cards/rancho_centro_indianapolis.jpg"
+import card6 from "../assets/cards/Condominio_tambore_uberlandia.jpg"
 import { useCountDown } from "../store"
 
 const store = useCountDown();
 const { finish, action } = storeToRefs(store)
-
 const anim = ref(null);
 const cards = reactive([
     {
         id: 0,
         hash: 0,
-        image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80",
+        image: card1,
         open: false,
         win: false,
         sort: 0,
@@ -43,7 +51,7 @@ const cards = reactive([
     {
         id: 1,
         hash: 0,
-        image: "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=715&q=80",
+        image: card1,
         open: false,
         win: false,
         sort: 0,
@@ -52,7 +60,7 @@ const cards = reactive([
     {
         id: 2,
         hash: 1,
-        image: "https://images.unsplash.com/photo-1533387520709-752d83de3630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+        image: card2,
         open: false,
         win: false,
         sort: 0,
@@ -61,7 +69,7 @@ const cards = reactive([
     {
         id: 3,
         hash: 1,
-        image: "https://images.unsplash.com/photo-1533387520709-752d83de3630?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60",
+        image: card2,
         open: false,
         win: false,
         sort: 0,
@@ -70,7 +78,7 @@ const cards = reactive([
     {
         id: 4,
         hash: 2,
-        image: "https://images.unsplash.com/photo-1588001832198-c15cff59b078?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        image: card3,
         open: false,
         win: false,
         sort: 0,
@@ -79,7 +87,7 @@ const cards = reactive([
     {
         id: 5,
         hash: 2,
-        image: "https://images.unsplash.com/photo-1588001832198-c15cff59b078?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+        image: card3,
         open: false,
         win: false,
         sort: 0,
@@ -88,7 +96,7 @@ const cards = reactive([
     {
         id: 6,
         hash: 3,
-        image: "https://images.unsplash.com/photo-1531604250646-2f0e818c4f06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card4,
         open: false,
         win: false,
         sort: 0,
@@ -97,7 +105,7 @@ const cards = reactive([
     {
         id: 7,
         hash: 3,
-        image: "https://images.unsplash.com/photo-1531604250646-2f0e818c4f06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card4,
         open: false,
         win: false,
         sort: 0,
@@ -106,7 +114,7 @@ const cards = reactive([
     {
         id: 8,
         hash: 4,
-        image: "https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card5,
         open: false,
         win: false,
         sort: 0,
@@ -115,7 +123,7 @@ const cards = reactive([
     {
         id: 9,
         hash: 4,
-        image: "https://images.unsplash.com/photo-1414609245224-afa02bfb3fda?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card5,
         open: false,
         win: false,
         sort: 0,
@@ -124,7 +132,7 @@ const cards = reactive([
     {
         id: 10,
         hash: 5,
-        image: "https://images.unsplash.com/photo-1585089858717-f4378c2031d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card6,
         open: false,
         win: false,
         sort: 0,
@@ -133,7 +141,7 @@ const cards = reactive([
     {
         id: 11,
         hash: 5,
-        image: "https://images.unsplash.com/photo-1585089858717-f4378c2031d8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHBvciUyMGRvJTIwc29sfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        image: card6,
         open: false,
         win: false,
         sort: 0,
@@ -179,8 +187,6 @@ const change = (card) => {
                     store.setCardStatus('')
                 }, 1500)
             }
-
-
         }
     })
 }
@@ -195,12 +201,8 @@ const loser = computed(() => {
 
 watch(winner, (val) => {
     if (val) {
-        // store.resetar(true);
         store.setAction('reset');
         open.value = []
-        // setTimeout(() => {
-        //     reset();
-        // }, 3000)
     }
 })
 
@@ -257,8 +259,8 @@ img {
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
-    position: relative;
 
+    position: relative;
 }
 
 .card-container {
@@ -277,7 +279,6 @@ img {
     margin: 0px;
     height: 100%;
     width: 100%;
-
 }
 
 .winner-lottie {
@@ -287,13 +288,26 @@ img {
     top: 100;
     z-index: 100;
     margin: 0 auto;
+
 }
+
+.loser-lottie {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
 
 .shake {
     animation: shake 0.5s;
     animation-iteration-count: 1;
 }
-
 
 
 @keyframes shake {
@@ -343,22 +357,25 @@ img {
 }
 
 
-
 @media (max-width: 600px) {
     .container {
         grid-template-columns: repeat(3, 1fr);
-        /* grid-template-rows: repeat(2, 1fr); */
     }
 }
 
-@media ((min-width: 601px) and (max-width: 900px)) {
+@media ((min-width: 601px) and (max-width: 960px)) {
     .container {
-        grid-template-columns: repeat(4, 1fr);
-        /* grid-template-rows: repeat(2, 1fr); */
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .card-container {
+        height: 160px;
+        width: 110px;
+        padding: 0.3em;
     }
 }
 
-@media ((min-width: 901px) and (max-width: 1920px)) {
+@media ((min-width: 960px) and (max-width: 1920px)) {
     .card-container {
         height: calc(225px + 50px);
         width: calc(150px + 50px);

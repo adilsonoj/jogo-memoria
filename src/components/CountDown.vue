@@ -38,14 +38,6 @@ const pulse = computed(() => {
     return "pulse3s"
 })
 
-// watch(reset, (value) => {
-//   console.log("listen winner")
-//   if (value) {
-//     clearInterval(interval);
-//     count.value = initTime
-
-//   }
-// })
 
 watch(action, (value) => {
   if (value == 'stop') {
@@ -71,7 +63,7 @@ watch(action, (value) => {
 <template>
   <div class="circle-timer pulse" :class="[pulse]">
     <span class="time">{{ count }}</span>
-    <span>Segundos</span>
+    <span class="sec">Segundos</span>
   </div>
 </template>
 
@@ -140,6 +132,23 @@ watch(action, (value) => {
   100% {
     -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
     box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
+
+@media ((min-width: 601px) and (max-width: 960px)) {
+  .header {}
+
+  .circle-timer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .time {
+    font-size: 25px;
+  }
+
+  .sec {
+    display: none;
   }
 }
 </style>

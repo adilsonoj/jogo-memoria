@@ -2,12 +2,13 @@
   <header>
     <CountDown class="count-down" />
     <!-- <span>Perdeu: {{ store.loser }}</span> -->
-    <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" width="150">
-    <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" width="150">
-    <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" width="150">
+    <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" class="foca">
+    <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" class="foca">
+    <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca">
     <!-- <button @click="store.setAction('start')">INICIAR</button> -->
     <div class="button" @click="store.setAction('start')">
-      INICIAR
+      <span class="button-text">INICIAR</span>
+      <img class="button-icon" src="../assets/play.svg" />
     </div>
   </header>
 </template>
@@ -34,6 +35,18 @@ header {
 
 .count-down {
   margin-left: 16px;
+}
+
+.button-text {
+  display: inline;
+}
+
+.button-icon {
+  display: none;
+}
+
+img.foca {
+  width: 150px;
 }
 
 
@@ -66,28 +79,23 @@ header {
   box-shadow: inset 0px 1px 3px #399f9f, inset 0px -1px 3px #399f9f, 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* .button>div {
-  color: #999;
-  font-size: 10px;
-  font-family: Helvetica Neue;
-  font-weight: initial;
-  font-style: normal;
-  text-align: center;
-  margin: 0px 0px 0px 0px
-} */
+@media ((min-width: 601px) and (max-width: 960px)) {
 
-/* .button>i {
-  color: #fff;
-  font-size: 1em;
-  border-radius: 0px;
-  border: 0px solid transparent;
-  border-width: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-  margin: 0px 0px 0px 0px;
-  position: static
-} */
+  .button {
+    width: 40px;
+    height: 40px;
+  }
 
-/* .button>.ld {
-  font-size: initial
-} */
+  .button-text {
+    display: none;
+  }
+
+  .button-icon {
+    display: inline;
+  }
+
+  img.foca {
+    width: 50px;
+  }
+}
 </style>
