@@ -7,7 +7,7 @@ import { storeToRefs } from 'pinia'
 
 const store = useCountDown();
 const { reset, action } = storeToRefs(store)
-const initTime = 60;
+const initTime = 120;
 
 
 const emit = defineEmits(['finish'])

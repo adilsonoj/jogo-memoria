@@ -42,7 +42,7 @@ const cards = reactive([
     {
         id: 0,
         hash: 0,
-        image: card1,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/25.png",
         open: false,
         win: false,
         sort: 0,
@@ -51,7 +51,7 @@ const cards = reactive([
     {
         id: 1,
         hash: 0,
-        image: card1,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/shiny/25.png",
         open: false,
         win: false,
         sort: 0,
@@ -60,7 +60,7 @@ const cards = reactive([
     {
         id: 2,
         hash: 1,
-        image: card2,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
         open: false,
         win: false,
         sort: 0,
@@ -69,7 +69,7 @@ const cards = reactive([
     {
         id: 3,
         hash: 1,
-        image: card2,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
         open: false,
         win: false,
         sort: 0,
@@ -78,7 +78,7 @@ const cards = reactive([
     {
         id: 4,
         hash: 2,
-        image: card3,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
         open: false,
         win: false,
         sort: 0,
@@ -87,7 +87,7 @@ const cards = reactive([
     {
         id: 5,
         hash: 2,
-        image: card3,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
         open: false,
         win: false,
         sort: 0,
@@ -96,7 +96,7 @@ const cards = reactive([
     {
         id: 6,
         hash: 3,
-        image: card4,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
         open: false,
         win: false,
         sort: 0,
@@ -105,7 +105,7 @@ const cards = reactive([
     {
         id: 7,
         hash: 3,
-        image: card4,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
         open: false,
         win: false,
         sort: 0,
@@ -114,7 +114,7 @@ const cards = reactive([
     {
         id: 8,
         hash: 4,
-        image: card5,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png",
         open: false,
         win: false,
         sort: 0,
@@ -123,7 +123,7 @@ const cards = reactive([
     {
         id: 9,
         hash: 4,
-        image: card5,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/150.png",
         open: false,
         win: false,
         sort: 0,
@@ -132,7 +132,7 @@ const cards = reactive([
     {
         id: 10,
         hash: 5,
-        image: card6,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
         open: false,
         win: false,
         sort: 0,
@@ -141,11 +141,43 @@ const cards = reactive([
     {
         id: 11,
         hash: 5,
-        image: card6,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/130.png",
+        shake: '',
+    },
+    {
+        id: 12,
+        hash: 6,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png",
         open: false,
         win: false,
         sort: 0,
         shake: '',
+    },
+    {
+        id: 13,
+        hash: 6,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/134.png",
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 14,
+        hash: 7,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 15,
+        hash: 7,
+        image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
+        open: false,
+        win: false,
+        sort: 0,
     }
 ])
 
@@ -256,7 +288,7 @@ img {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
 
@@ -265,9 +297,8 @@ img {
 
 .card-container {
     cursor: pointer;
-    height: 225px;
-    width: 150px;
-    padding: 15px;
+
+    padding: 2px;
     display: flex;
     align-items: center;
     justify-content: center;

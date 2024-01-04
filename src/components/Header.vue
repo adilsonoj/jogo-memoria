@@ -31,6 +31,7 @@ header {
   justify-content: space-between;
   align-items: center;
   box-shadow: inset 0px 1px 3px rgba(44, 204, 196, 0.4), inset 0px -1px 3px rgba(44, 204, 196, 0.4), 0px 3px 6px rgba(0, 0, 0, 0.3);
+  margin-bottom: 10px;
 }
 
 .count-down {
