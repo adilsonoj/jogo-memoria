@@ -297,7 +297,6 @@ img {
 
 .card-container {
     cursor: pointer;
-
     padding: 2px;
     display: flex;
     align-items: center;
