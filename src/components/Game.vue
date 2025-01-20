@@ -9,7 +9,7 @@
         <div v-for="card in cards" class="card-container" :class="card.shake" id="card_container">
             <Transition name="flip">
                 <div class="card" v-show="card.open" @click="change(card)">
-                    <img :src="card.image" alt="" srcset="">
+                    <img :src="card.image" alt="" class="card-img" >
                 </div>
             </Transition>
             <Transition name="flip">
@@ -27,12 +27,7 @@ import { nextTick, watch } from 'vue';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
-import card1 from "../assets/cards/city_uberlandia.jpg"
-import card2 from "../assets/cards/patrimonio_uberlandia.jpg"
-import card3 from "../assets/cards/granja_marileusa_uberlandia.jpg"
-import card4 from "../assets/cards/Copacabana_uberlandia.jpg"
-import card5 from "../assets/cards/rancho_centro_indianapolis.jpg"
-import card6 from "../assets/cards/Condominio_tambore_uberlandia.jpg"
+
 import { useCountDown } from "../store"
 
 const store = useCountDown();
@@ -309,6 +304,15 @@ img {
     margin: 0px;
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.card .card-img {
+    width: 100%;
+    height: auto;
 }
 
 .winner-lottie {

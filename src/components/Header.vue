@@ -2,9 +2,10 @@
   <header>
     <CountDown class="count-down" />
     <!-- <span>Perdeu: {{ store.loser }}</span> -->
-    <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" class="foca">
+    <!-- <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" class="foca">
     <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" class="foca">
-    <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca">
+    <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca"> -->
+    <img src="../assets/logo.png" alt=""  width="120">
     <!-- <button @click="store.setAction('start')">INICIAR</button> -->
     <div class="button" @click="store.setAction('start')">
       <span class="button-text">INICIAR</span>
