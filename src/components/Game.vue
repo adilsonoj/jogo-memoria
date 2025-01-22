@@ -283,8 +283,10 @@ img {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    --grid-template-columns: repeat(8, 1fr);
+    --grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
     place-items: center;
 
     position: relative;
@@ -390,7 +392,13 @@ img {
     }
 }
 
+@media (max-width: 420px) {
+    .container {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
 
+/* 
 @media (max-width: 600px) {
     .container {
         grid-template-columns: repeat(3, 1fr);
@@ -414,5 +422,5 @@ img {
         height: calc(225px + 50px);
         width: calc(150px + 50px);
     }
-}
+} */
 </style>
