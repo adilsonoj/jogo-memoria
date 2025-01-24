@@ -285,7 +285,7 @@ img {
     display: grid;
     --grid-template-columns: repeat(8, 1fr);
     --grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
     place-items: center;
 
