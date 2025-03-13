@@ -325,11 +325,12 @@ shuffle()
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
     
 }
 
 .card img {
-    width: 100%;
+    width: 70%;
 }
 
 
