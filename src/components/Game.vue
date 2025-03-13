@@ -327,7 +327,7 @@ shuffle()
 }
 
 .card img {
-    width: 100px;
+    width: 100%;
 }
 
 
