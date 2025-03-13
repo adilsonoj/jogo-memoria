@@ -329,7 +329,7 @@ shuffle()
 }
 
 .card img {
-    width: 50%;
+    width: 70%;
 }
 
 
@@ -449,7 +449,7 @@ shuffle()
   /* grid-template-rows: repeat(4, 1fr); */
   gap: 16px;
   padding: 16px;
-  height: calc(100vh - 120px); /* Ajusta altura considerando o header */
+  height: calc(100vh - 160px); /* Ajusta altura considerando o header */
   width: 100%;
   box-sizing: border-box;
 }
