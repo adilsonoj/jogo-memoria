@@ -3,11 +3,23 @@ import { ref, computed } from '@vue/reactivity'
 import { watch } from 'vue';
 import { useCountDown } from "../store"
 import { storeToRefs } from 'pinia'
+import { onMounted } from 'vue';
+
+let initTime = 60;
+
+onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const segundos = urlParams.get('segundos');
+  console.log(segundos)
+  if (segundos) {
+    initTime = parseInt(segundos);
+    count.value = initTime;
+  }
+});
 
 
 const store = useCountDown();
 const { reset, action } = storeToRefs(store)
-const initTime = 480;
 
 
 const emit = defineEmits(['finish'])
@@ -63,17 +75,18 @@ watch(action, (value) => {
 <template>
   <div class="circle-timer pulse" :class="[pulse]">
     <span class="time">{{ count }}</span>
-    <span class="sec">Segundos</span>
+    <!-- <span class="sec">Segundos</span> -->
   </div>
 </template>
 
 <style scoped>
 .circle-timer {
   display: flex;
-  flex-direction: column;
+  
   align-items: center;
-  width: 110px;
-  height: 110px;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
   border: solid 2px rgba(44, 204, 196, 0.4);
   border-radius: 50%;
 }

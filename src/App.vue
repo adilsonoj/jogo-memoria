@@ -7,5 +7,10 @@ import Game from './components/Game.vue'
 <template>
   <Heade />
   <Game class="game" />
+
+
+
 </template>
-<style></style>
+<style>
+
+</style>

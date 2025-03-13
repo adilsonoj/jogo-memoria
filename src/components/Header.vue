@@ -5,11 +5,14 @@
     <!-- <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" class="foca">
     <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" class="foca">
     <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca"> -->
-    <img src="../assets/logo.png" alt=""  width="120">
+    <div class="logos">
+      <img src="../assets/cards/ev1/1.png" alt=""  width="100">
+      <img src="../assets/cards/ev1/2.png" alt=""  width="100">
+    </div>
     <!-- <button @click="store.setAction('start')">INICIAR</button> -->
     <div class="button" @click="store.setAction('start')">
-      <span class="button-text">INICIAR</span>
-      <img class="button-icon" src="../assets/play.svg" />
+      <!-- <span class="button-text">INICIAR</span> -->
+      <img  src="../assets/play.svg" />
     </div>
   </header>
 </template>
@@ -19,6 +22,8 @@ import { useCountDown } from "../store"
 import { storeToRefs } from 'pinia';
 const store = useCountDown();
 const { cardStatus, loser } = storeToRefs(store)
+
+
 </script>
 <style scoped>
 header {
@@ -33,6 +38,12 @@ header {
   align-items: center;
   box-shadow: inset 0px 1px 3px rgba(44, 204, 196, 0.4), inset 0px -1px 3px rgba(44, 204, 196, 0.4), 0px 3px 6px rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
+}
+
+.logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .count-down {
@@ -59,8 +70,8 @@ img.foca {
   justify-content: center;
   align-items: center;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
   background: rgba(44, 204, 196, 0.4);
   border-radius: 100px;
@@ -73,6 +84,7 @@ img.foca {
   font-weight: 900;
   font-style: normal;
   text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.5);
+  z-index: 150;
 
 }
 
