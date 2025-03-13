@@ -5,6 +5,7 @@
     <div class="loser-lottie" v-if="loser">
         <lottie-animation ref="anim" :animationData="loserLottie" style="width: 40%" />
     </div>
+    <SuccessDialog :status="winner && 'success'" />
     <!-- <div class="grid">
   <div class="card" v-for="n in 12" :key="n"></div>
 </div> -->
@@ -27,6 +28,7 @@
 import { computed, reactive, ref } from '@vue/reactivity';
 import { storeToRefs } from 'pinia';
 import { nextTick, watch } from 'vue';
+import SuccessDialog from './SuccessDialog.vue';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
@@ -46,42 +48,42 @@ const { finish, action } = storeToRefs(store)
 const anim = ref(null);
 const cards = reactive([
     
-    {
-        id: 2,
-        hash: 1,
-       image: img2,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 3,
-        hash: 1,
-       image: img2,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 4,
-        hash: 2,
-        image: img3,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 5,
-        hash: 2,
-        image: img3,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
+    // {
+    //     id: 2,
+    //     hash: 1,
+    //    image: img2,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
+    // {
+    //     id: 3,
+    //     hash: 1,
+    //    image: img2,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
+    // {
+    //     id: 4,
+    //     hash: 2,
+    //     image: img3,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
+    // {
+    //     id: 5,
+    //     hash: 2,
+    //     image: img3,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
     {
         id: 6,
         hash: 3,
@@ -443,8 +445,8 @@ shuffle()
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-rows: repeat(4, 1fr); */
   gap: 16px;
   padding: 16px;
   height: calc(100vh - 120px); /* Ajusta altura considerando o header */
