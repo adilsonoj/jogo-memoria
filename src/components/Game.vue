@@ -13,12 +13,12 @@
         <div v-for="card in cards" class="card-grid" :class="card.shake" id="card_container">
             <Transition name="flip">
                 <div class="card" v-show="card.open" @click="change(card)">
-                    <img :src="card.image" alt=""  >
+                    <img :src="card.image" alt="">
                 </div>
             </Transition>
             <Transition name="flip">
                 <div class="card" v-show="!card.open" @click="change(card)">
-                    <img :src="img1"  >
+                    <img :src="img6">
                 </div>
             </Transition>
         </div>
@@ -39,6 +39,7 @@ import img4 from "../assets/cards/ev1/4.png"
 import img5 from "../assets/cards/ev1/5.png"
 import img6 from "../assets/cards/ev1/6.png"
 import img7 from "../assets/cards/ev1/7.png"
+import img8 from "../assets/cards/ev1/8.jpg"
 // import img10 from "../assets/cards/ev/10.png"
 
 import { useCountDown } from "../store"
@@ -47,7 +48,7 @@ const store = useCountDown();
 const { finish, action } = storeToRefs(store)
 const anim = ref(null);
 const cards = reactive([
-    
+
     // {
     //     id: 2,
     //     hash: 1,
@@ -66,42 +67,42 @@ const cards = reactive([
     //     sort: 0,
     //     shake: '',
     // },
-    // {
-    //     id: 4,
-    //     hash: 2,
-    //     image: img3,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
-    // {
-    //     id: 5,
-    //     hash: 2,
-    //     image: img3,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
     {
-        id: 6,
-        hash: 3,
-        image: img4,
+        id: 4,
+        hash: 2,
+        image: img3,
         open: false,
         win: false,
         sort: 0,
         shake: '',
     },
     {
-        id: 7,
-        hash: 3,
-        image: img4,
+        id: 5,
+        hash: 2,
+        image: img3,
         open: false,
         win: false,
         sort: 0,
         shake: '',
     },
+    // {
+    //     id: 6,
+    //     hash: 3,
+    //     image: img4,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
+    // {
+    //     id: 7,
+    //     hash: 3,
+    //     image: img4,
+    //     open: false,
+    //     win: false,
+    //     sort: 0,
+    //     shake: '',
+    // },
     {
         id: 8,
         hash: 4,
@@ -123,7 +124,7 @@ const cards = reactive([
     {
         id: 10,
         hash: 5,
-        image: img6,
+        image: img1,
         open: false,
         win: false,
         sort: 0,
@@ -132,7 +133,7 @@ const cards = reactive([
     {
         id: 11,
         hash: 5,
-        image: img6,
+        image: img1,
         open: false,
         win: false,
         sort: 0,
@@ -141,7 +142,7 @@ const cards = reactive([
     {
         id: 0,
         hash: 0,
-        image: img7,
+        image: img8,
         open: false,
         win: false,
         sort: 0,
@@ -150,7 +151,7 @@ const cards = reactive([
     {
         id: 1,
         hash: 0,
-        image: img7,
+        image: img8,
         open: false,
         win: false,
         sort: 0,
@@ -279,7 +280,6 @@ const shuffle = () => {
 shuffle()
 </script>
 <style scoped>
-
 .flip-enter-active {
     transition: all 0.3s ease;
 }
@@ -325,7 +325,7 @@ shuffle()
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 .card img {
@@ -444,24 +444,25 @@ shuffle()
 } */
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  /* grid-template-rows: repeat(4, 1fr); */
-  gap: 16px;
-  padding: 16px;
-  height: calc(100vh - 160px); /* Ajusta altura considerando o header */
-  width: 100%;
-  box-sizing: border-box;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: repeat(4, 1fr); */
+    gap: 16px;
+    padding: 16px;
+    height: calc(100vh - 160px);
+    /* Ajusta altura considerando o header */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .card-grid {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* aspect-ratio: 3/4; */
-  cursor: pointer;
-  transition: transform 0.2s;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* aspect-ratio: 3/4; */
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 /* .card:hover {
@@ -474,5 +475,4 @@ shuffle()
     padding: 8px;
   }
 } */
-
 </style>
