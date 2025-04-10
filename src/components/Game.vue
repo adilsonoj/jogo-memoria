@@ -12,13 +12,31 @@
     <div class="grid">
         <div v-for="card in cards" class="card-grid" :class="card.shake" id="card_container">
             <Transition name="flip">
-                <div class="card" v-show="card.open" @click="change(card)">
-                    <img :src="card.image" alt="">
+                <div  v-show="card.open" @click="change(card)" :style="{
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${card.image})`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                    
+                }">
+                    <!-- <img :src="card.image" alt=""> -->
+                 
                 </div>
             </Transition>
             <Transition name="flip">
-                <div class="card" v-show="!card.open" @click="change(card)">
-                    <img :src="img6">
+                <div  v-show="!card.open" @click="change(card)" :style="{
+                    width: '100%',
+                    height: '100%',
+                    backgroundImage: `url(${logo})`,
+                    backgroundSize: 'contain',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    
+                }">
+                    <!-- <img :src="img6" > -->
+                    
                 </div>
             </Transition>
         </div>
@@ -32,15 +50,17 @@ import SuccessDialog from './SuccessDialog.vue';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
-import img1 from "../assets/cards/ev1/1.png"
-import img2 from "../assets/cards/ev1/2.png"
-import img3 from "../assets/cards/ev1/3.png"
-import img4 from "../assets/cards/ev1/4.png"
-import img5 from "../assets/cards/ev1/5.png"
-import img6 from "../assets/cards/ev1/6.png"
-import img7 from "../assets/cards/ev1/7.png"
-import img8 from "../assets/cards/ev1/8.jpg"
+import img1 from "../assets/cards/ev3/1.png"
+import img2 from "../assets/cards/ev3/2.png"
+import img3 from "../assets/cards/ev3/3.png"
+import img4 from "../assets/cards/ev3/4.png"
+import img5 from "../assets/cards/ev3/5.png"
+import img6 from "../assets/cards/ev3/6.png"
+import img7 from "../assets/cards/ev3/7.png"
+import img8 from "../assets/cards/ev3/8.png"
 // import img10 from "../assets/cards/ev/10.png"
+
+import logo from "../assets/cards/ev3/logo.png"
 
 import { useCountDown } from "../store"
 
@@ -48,25 +68,42 @@ const store = useCountDown();
 const { finish, action } = storeToRefs(store)
 const anim = ref(null);
 const cards = reactive([
-
-    // {
-    //     id: 2,
-    //     hash: 1,
-    //    image: img2,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
-    // {
-    //     id: 3,
-    //     hash: 1,
-    //    image: img2,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
+{
+        id: 0,
+        hash: 0,
+       image: img1,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 1,
+        hash: 0,
+       image: img2,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 2,
+        hash: 1,
+       image: img2,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 3,
+        hash: 1,
+       image: img2,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
     {
         id: 4,
         hash: 2,
@@ -85,24 +122,24 @@ const cards = reactive([
         sort: 0,
         shake: '',
     },
-    // {
-    //     id: 6,
-    //     hash: 3,
-    //     image: img4,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
-    // {
-    //     id: 7,
-    //     hash: 3,
-    //     image: img4,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
+    {
+        id: 6,
+        hash: 3,
+        image: img4,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 7,
+        hash: 3,
+        image: img4,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
     {
         id: 8,
         hash: 4,
@@ -124,7 +161,7 @@ const cards = reactive([
     {
         id: 10,
         hash: 5,
-        image: img1,
+        image: img6,
         open: false,
         win: false,
         sort: 0,
@@ -133,48 +170,48 @@ const cards = reactive([
     {
         id: 11,
         hash: 5,
-        image: img1,
+        image: img6,
         open: false,
         win: false,
         sort: 0,
         shake: '',
     },
     {
-        id: 0,
-        hash: 0,
-        image: img8,
+        id: 12,
+        hash: 6,
+        image: img7,
         open: false,
         win: false,
         sort: 0,
         shake: '',
     },
     {
-        id: 1,
-        hash: 0,
-        image: img8,
+        id: 13,
+        hash: 6,
+        image: img7,
         open: false,
         win: false,
         sort: 0,
         shake: '',
     },
-    // {
-    //     id: 12,
-    //     hash: 6,
-    //    image: img7,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
-    // {
-    //     id: 13,
-    //     hash: 6,
-    //    image: img7,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
+    {
+        id: 14,
+        hash: 7,
+       image: img8,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
+    {
+        id: 15,
+        hash: 7,
+       image: img8,
+        open: false,
+        win: false,
+        sort: 0,
+        shake: '',
+    },
     // {
     //     id: 14,
     //     hash: 7,
@@ -329,7 +366,8 @@ shuffle()
 }
 
 .card img {
-    width: 70%;
+    width: auto;
+    height: 100%;
 }
 
 
@@ -453,16 +491,19 @@ shuffle()
     /* Ajusta altura considerando o header */
     width: 100%;
     box-sizing: border-box;
+    
 }
 
 .card-grid {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     /* aspect-ratio: 3/4; */
     cursor: pointer;
     transition: transform 0.2s;
+    padding: 30px;
+    background-color: #fff;
 }
 
 /* .card:hover {
