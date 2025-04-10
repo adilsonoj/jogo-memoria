@@ -12,30 +12,14 @@
     <div class="grid">
         <div v-for="card in cards" class="card-grid" :class="card.shake" id="card_container">
             <Transition name="flip">
-                <div  v-show="card.open" @click="change(card)" :style="{
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${card.image})`,
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                    
-                }">
-                    <!-- <img :src="card.image" alt=""> -->
+                <div  v-show="card.open" @click="change(card)" class="card" >
+                    <img :src="card.image" alt="">
                  
                 </div>
             </Transition>
             <Transition name="flip">
-                <div  v-show="!card.open" @click="change(card)" :style="{
-                    width: '100%',
-                    height: '100%',
-                    backgroundImage: `url(${logo})`,
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat',
-                    
-                }">
-                    <!-- <img :src="img6" > -->
+                <div  v-show="!card.open" @click="change(card)" class="card">
+                    <img :src="logo" >
                     
                 </div>
             </Transition>
@@ -50,19 +34,19 @@ import SuccessDialog from './SuccessDialog.vue';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
+
+
+import { useCountDown } from "../store"
+
+import logo from "../assets/logo.png"
 import img1 from "../assets/cards/1.png"
 import img2 from "../assets/cards/2.png"
 import img3 from "../assets/cards/3.png"
 import img4 from "../assets/cards/4.png"
 import img5 from "../assets/cards/5.png"
 import img6 from "../assets/cards/6.png"
-import img7 from "../assets/cards/7.png"
-import img8 from "../assets/cards/8.png"
-// import img10 from "../assets/cards/ev/10.png"
-
-import logo from "../assets/cards/logo.png"
-
-import { useCountDown } from "../store"
+import img7 from "../assets/cards/7.png"   
+import img8 from "../assets/cards/8.png" 
 
 const store = useCountDown();
 const { finish, action } = storeToRefs(store)
@@ -80,7 +64,7 @@ const cards = reactive([
     {
         id: 1,
         hash: 0,
-       image: img2,
+       image: img1,
         open: false,
         win: false,
         sort: 0,
@@ -89,7 +73,7 @@ const cards = reactive([
     {
         id: 2,
         hash: 1,
-       image: img2,
+        image: img2,
         open: false,
         win: false,
         sort: 0,
@@ -206,7 +190,7 @@ const cards = reactive([
     {
         id: 15,
         hash: 7,
-       image: img8,
+       image: img8,   
         open: false,
         win: false,
         sort: 0,
@@ -359,15 +343,23 @@ shuffle()
 .card {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
 
 }
 
 .card img {
-    width: auto;
+    width: 100%;
     height: 100%;
+    object-fit: contain; /* Mantém a proporção da imagem */
+    max-width: 100%;
+    max-height: 100%;
 }
 
 
@@ -504,6 +496,7 @@ shuffle()
     transition: transform 0.2s;
     padding: 30px;
     background-color: #fff;
+    position: relative;
 }
 
 /* .card:hover {

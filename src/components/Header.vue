@@ -6,7 +6,7 @@
     <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" class="foca">
     <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca"> -->
     <div class="logos">
-      <img src="../assets/cards/logo.png" alt="" width="100">
+      <img src="../assets/logo.png" alt="" width="100">
       <!-- <img src="../assets/cards/ev1/2.png" alt=""  width="100"> -->
     </div>
     <!-- <button @click="store.setAction('start')">INICIAR</button> -->
