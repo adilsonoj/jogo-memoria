@@ -50,17 +50,17 @@ import SuccessDialog from './SuccessDialog.vue';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
-import img1 from "../assets/cards/ev3/1.png"
-import img2 from "../assets/cards/ev3/2.png"
-import img3 from "../assets/cards/ev3/3.png"
-import img4 from "../assets/cards/ev3/4.png"
-import img5 from "../assets/cards/ev3/5.png"
-import img6 from "../assets/cards/ev3/6.png"
-import img7 from "../assets/cards/ev3/7.png"
-import img8 from "../assets/cards/ev3/8.png"
+import img1 from "../assets/cards/1.png"
+import img2 from "../assets/cards/2.png"
+import img3 from "../assets/cards/3.png"
+import img4 from "../assets/cards/4.png"
+import img5 from "../assets/cards/5.png"
+import img6 from "../assets/cards/6.png"
+import img7 from "../assets/cards/7.png"
+import img8 from "../assets/cards/8.png"
 // import img10 from "../assets/cards/ev/10.png"
 
-import logo from "../assets/cards/ev3/logo.png"
+import logo from "../assets/cards/logo.png"
 
 import { useCountDown } from "../store"
 
