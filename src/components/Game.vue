@@ -19,7 +19,7 @@
             </Transition>
             <Transition name="flip">
                 <div  v-show="!card.open" @click="change(card)" class="card">
-                    <img :src="img8" >
+                    <img :src="logo" >
                     
                 </div>
             </Transition>
@@ -38,7 +38,7 @@ import loserLottie from "../assets/lottie/loser.json"
 
 import { useCountDown } from "../store"
 
-import logo from "../assets/logo.png"
+import logo from "../assets/cards/back.png"
 import img1 from "../assets/cards/1.png"
 import img2 from "../assets/cards/2.png"
 import img3 from "../assets/cards/3.png"
