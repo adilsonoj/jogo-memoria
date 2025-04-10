@@ -19,7 +19,7 @@
             </Transition>
             <Transition name="flip">
                 <div  v-show="!card.open" @click="change(card)" class="card">
-                    <img :src="logo" >
+                    <img :src="img8" >
                     
                 </div>
             </Transition>
@@ -475,7 +475,7 @@ shuffle()
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     /* grid-template-rows: repeat(4, 1fr); */
     gap: 16px;
     padding: 16px;
