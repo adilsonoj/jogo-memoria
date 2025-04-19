@@ -5,7 +5,14 @@ import { useCountDown } from "../store"
 import { storeToRefs } from 'pinia'
 import { onMounted } from 'vue';
 
-let initTime = 60;
+const props = defineProps({
+    time: {
+        type: String,
+        required: false
+    }
+})
+
+let initTime = props.time || 60;
 
 onMounted(() => {
   const urlParams = new URLSearchParams(window.location.search);

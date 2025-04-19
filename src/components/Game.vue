@@ -1,219 +1,84 @@
 <template>
     <div class="winner-lottie" v-if="winner">
-        <lottie-animation ref="anim" :animationData="confeti" />
+        <Vue3Lottie :animationData="confeti" loop="false"/>
     </div>
     <div class="loser-lottie" v-if="loser">
-        <lottie-animation ref="anim" :animationData="loserLottie" style="width: 40%" />
+        <Vue3Lottie :animationData="loserLottie" style="width: 40%" loop="false"/>
     </div>
     <SuccessDialog :status="winner && 'success'" />
-    <!-- <div class="grid">
-  <div class="card" v-for="n in 12" :key="n"></div>
-</div> -->
     <div class="grid">
         <div v-for="card in cards" class="card-grid" :class="card.shake" id="card_container">
             <Transition name="flip">
-                <div  v-show="card.open" @click="change(card)" class="card" >
+                <div v-show="card.open" @click="change(card)" class="card">
                     <img :src="card.image" alt="">
-                 
                 </div>
             </Transition>
             <Transition name="flip">
-                <div  v-show="!card.open" @click="change(card)" class="card">
-                    <img :src="logo" >
-                    
+                <div v-show="!card.open" @click="change(card)" class="card">
+                    <img :src="logo">
                 </div>
             </Transition>
         </div>
     </div>
 </template>
 <script setup>
-import { computed, reactive, ref } from '@vue/reactivity';
+import { computed,  ref } from '@vue/reactivity';
 import { storeToRefs } from 'pinia';
 import { nextTick, watch } from 'vue';
 import SuccessDialog from './SuccessDialog.vue';
+import { Vue3Lottie } from 'vue3-lottie';
 
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
 
-
 import { useCountDown } from "../store"
 
-import logo from "../assets/cards/back.png"
-import img1 from "../assets/cards/1.png"
-import img2 from "../assets/cards/2.png"
-import img3 from "../assets/cards/3.png"
-import img4 from "../assets/cards/4.png"
-import img5 from "../assets/cards/5.png"
-import img6 from "../assets/cards/6.png"
-import img7 from "../assets/cards/7.png"   
-import img8 from "../assets/cards/8.png" 
-
+const props = defineProps({
+    payload: {
+        type: Object,
+        required: true
+    }
+})
 const store = useCountDown();
+const logo = ref("")
 const { finish, action } = storeToRefs(store)
 const anim = ref(null);
-const cards = reactive([
-{
-        id: 0,
-        hash: 0,
-       image: img1,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 1,
-        hash: 0,
-       image: img1,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 2,
-        hash: 1,
-        image: img2,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 3,
-        hash: 1,
-       image: img2,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 4,
-        hash: 2,
-        image: img3,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 5,
-        hash: 2,
-        image: img3,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 6,
-        hash: 3,
-        image: img4,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 7,
-        hash: 3,
-        image: img4,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 8,
-        hash: 4,
-        image: img5,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 9,
-        hash: 4,
-        image: img5,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 10,
-        hash: 5,
-        image: img6,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 11,
-        hash: 5,
-        image: img6,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 12,
-        hash: 6,
-        image: img7,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 13,
-        hash: 6,
-        image: img7,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 14,
-        hash: 7,
-       image: img8,
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    {
-        id: 15,
-        hash: 7,
-       image: img8,   
-        open: false,
-        win: false,
-        sort: 0,
-        shake: '',
-    },
-    // {
-    //     id: 14,
-    //     hash: 7,
-    //     image: img10,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    //     shake: '',
-    // },
-    // {
-    //     id: 15,
-    //     hash: 7,
-    //     image: img10,
-    //     open: false,
-    //     win: false,
-    //     sort: 0,
-    // }
-])
+const cards = ref([])
+
+const paserCards = () => {
+    let count = 0;
+    logo.value = props.payload.logo
+    for(let i = 0; i < 8; i++){
+        console.log(props.payload[`imagem${i}`]);
+        if(props.payload[`imagem${i}`]){
+            cards.value.push({
+                id: count++,
+                hash: props.payload[`imagem${i}`],
+                image: props.payload[`imagem${i}`],
+                open: false,
+                win: false,
+                sort: 0,
+                shake: '',
+            })
+            
+            cards.value.push({
+                id: count++,
+                hash: props.payload[`imagem${i}`],
+                image: props.payload[`imagem${i}`],
+                open: false,
+                win: false,
+                sort: 0,
+                shake: '',
+            })
+        }
+    }
+}
+
+paserCards()
+
+
+
+
 
 const open = ref([])
 const shake = ref("shake")
@@ -258,11 +123,13 @@ const change = (card) => {
 }
 
 const winner = computed(() => {
-    return cards.every(e => e.win)
+    if(cards.value.length == 0) return false;
+    return cards.value.every(e => e.win)
 })
 
 const loser = computed(() => {
-    return finish.value && !cards.every(e => e.win)
+    if(cards.value.length == 0) return false;
+    return finish.value && !cards.value.every(e => e.win)
 })
 
 watch(winner, (val) => {
@@ -285,7 +152,7 @@ watch(action, (val) => {
 })
 
 const reset = () => {
-    cards.forEach(e => {
+    cards.value.forEach(e => {
         e.open = false;
         e.win = false;
     })
@@ -294,8 +161,8 @@ const reset = () => {
 }
 
 const shuffle = () => {
-    cards.forEach(value => { value.sort = Math.random() })
-    cards.sort((a, b) => a.sort - b.sort)
+    cards.value.forEach(value => { value.sort = Math.random() })
+    cards.value.sort((a, b) => a.sort - b.sort)
 }
 
 shuffle()

@@ -1,12 +1,12 @@
 <template>
   <header>
-    <CountDown class="count-down" />
+    <CountDown class="count-down" :time="time" />
     <!-- <span>Perdeu: {{ store.loser }}</span> -->
     <!-- <img v-show="!cardStatus && !loser" src="../assets/foca/Idle.gif" class="foca">
     <img v-show="cardStatus == 'success'" src="../assets/foca/success.gif" class="foca">
     <img v-show="cardStatus == 'error' || loser" src="../assets/foca/error.gif" class="foca"> -->
     <div class="logos">
-      <img src="../assets/logo.png" alt="" width="100">
+      <img :src="logo" alt="" class="logo">
       <!-- <img src="../assets/cards/ev1/2.png" alt=""  width="100"> -->
     </div>
     <!-- <button @click="store.setAction('start')">INICIAR</button> -->
@@ -23,7 +23,16 @@ import { storeToRefs } from 'pinia';
 const store = useCountDown();
 const { cardStatus, loser } = storeToRefs(store)
 
-
+const props = defineProps({
+    logo: {
+        type: String,
+        required: true
+    },
+    time: {
+        type: String,
+        required: true
+    }
+})
 </script>
 <style scoped>
 header {
@@ -44,6 +53,11 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.logo {
+  width: auto;
+  max-height: 100px;
 }
 
 .count-down {
