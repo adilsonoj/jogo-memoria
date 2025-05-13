@@ -45,7 +45,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: inset 0px 1px 3px rgba(44, 204, 196, 0.4), inset 0px -1px 3px rgba(44, 204, 196, 0.4), 0px 3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 1px 3px #c485fe, inset 0px -1px 3px #c485fe, 0px 3px 6px rgba(0, 0, 0, 0.3);
   margin-bottom: 10px;
 }
 
@@ -87,11 +87,11 @@ img.foca {
   width: 80px;
   height: 80px;
   cursor: pointer;
-  background: rgba(44, 204, 196, 0.4);
+  background: #800eea;
   border-radius: 100px;
   border: 3px solid #fff;
   border-width: 3px 3px 3px 3px;
-  box-shadow: inset 0px 1px 3px #55e9e8, inset 0px -1px 3px #35c9c8, 0px 3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 1px 3px #800eea, inset 0px -1px 3px #800eea, 0px 3px 6px rgba(0, 0, 0, 0.3);
   color: #ffffff;
   font-size: 20px;
   /* font-family: Helvetica Neue; */
@@ -102,9 +102,9 @@ img.foca {
 
 }
 
-.button:active {
+.button:hover {
   transform: translateY(1px) translateX(1px);
-  box-shadow: inset 0px 1px 3px #399f9f, inset 0px -1px 3px #399f9f, 0px 3px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0px 1px 3px #912cf0, inset 0px -1px 3px #912cf0, 0px 3px 6px rgba(0, 0, 0, 0.3);
 }
 
 @media ((min-width: 601px) and (max-width: 960px)) {

@@ -94,7 +94,7 @@ watch(action, (value) => {
   justify-content: center;
   width: 80px;
   height: 80px;
-  border: solid 2px rgba(44, 204, 196, 0.4);
+  border: solid 2px #c485fe;
   border-radius: 50%;
 }
 
@@ -103,8 +103,8 @@ watch(action, (value) => {
 }
 
 
-.pulse {
-  box-shadow: 0 0 0 rgba(44, 204, 196, 0.4);
+.pulse {  
+  box-shadow: 0 0 0 0 #c485fe;
 
 }
 
@@ -126,7 +126,7 @@ watch(action, (value) => {
 
 @-webkit-keyframes pulse {
   0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(44, 204, 196, 0.4);
+    -webkit-box-shadow: 0 0 0 0 #c485fe;
   }
 
   70% {
@@ -140,8 +140,8 @@ watch(action, (value) => {
 
 @keyframes pulse {
   0% {
-    -moz-box-shadow: 0 0 0 0 rgba(44, 204, 196, 0.4);
-    box-shadow: 0 0 0 0 rgba(44, 204, 196, 0.4);
+    -moz-box-shadow: 0 0 0 0 #c485fe;
+    box-shadow: 0 0 0 0 #c485fe;
   }
 
   70% {

@@ -182,30 +182,6 @@ shuffle()
     opacity: 0;
 }
 
-/* .container {
-    display: grid;
-    --grid-template-columns: repeat(8, 1fr);
-    --grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    place-items: center;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-}
-
-.card-container {
-    cursor: pointer;
-    padding: 2px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 2s ease;
-    overflow: hidden;
-    
-} */
 
 .card {
     width: 100%;
@@ -308,37 +284,7 @@ shuffle()
     }
 }
 
-/* @media (max-width: 420px) {
-    .container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-} */
 
-/* 
-@media (max-width: 600px) {
-    .container {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media ((min-width: 601px) and (max-width: 960px)) {
-    .container {
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .card-container {
-        height: 160px;
-        width: 110px;
-        padding: 0.3em;
-    }
-}
-
-@media ((min-width: 960px) and (max-width: 1920px)) {
-    .card-container {
-        height: calc(225px + 50px);
-        width: calc(150px + 50px);
-    }
-} */
 
 .grid {
     display: grid;
@@ -366,14 +312,5 @@ shuffle()
     position: relative;
 }
 
-/* .card:hover {
-  transform: scale(1.02);
-} */
 
-/* @media (max-width: 600px) {
-  .grid {
-    gap: 8px;
-    padding: 8px;
-  }
-} */
 </style>
