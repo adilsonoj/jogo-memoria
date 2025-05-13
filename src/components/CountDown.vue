@@ -14,19 +14,20 @@ const props = defineProps({
 
 let initTime = props.time || 60;
 
-onMounted(() => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const segundos = urlParams.get('segundos');
-  console.log(segundos)
-  if (segundos) {
-    initTime = parseInt(segundos);
-    count.value = initTime;
-  }
-});
+// onMounted(() => {
+//   const urlParams = new URLSearchParams(window.location.search);
+//   const segundos = urlParams.get('segundos');
+//   if (segundos) {
+//     initTime = parseInt(segundos);
+//     count.value = initTime;
+//   }
+// });
 
 
 const store = useCountDown();
-const { reset, action } = storeToRefs(store)
+const {  action } = storeToRefs(store)
+
+store.setInitTime(initTime)
 
 
 const emit = defineEmits(['finish'])
@@ -37,10 +38,11 @@ const countDown = () => {
   count.value = initTime;
   interval = setInterval(function () {
     --count.value
-
+  
     if (count.value == 0) {
       clearInterval(interval);
       console.log("finish")
+      
       store.setFinish(true);
     }
   }, 1000);
@@ -61,11 +63,13 @@ const pulse = computed(() => {
 watch(action, (value) => {
   if (value == 'stop') {
     // count.value = initTime
+    console.log("stop")
     return;
   }
   if (value == 'reset') {
     store.setFinish(false);
     clearInterval(interval);
+    store.setFinishTime(count.value)
     // count.value = initTime;
     return;
   }

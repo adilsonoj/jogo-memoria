@@ -7,6 +7,8 @@ export const useCountDown = defineStore('counter', () => {
   const finish = ref(false)
   const loser = ref(false)
   const cardStatus = ref('')
+  const finishTime = ref()
+  const initTime = ref(0)
 
   // const doubleCount = computed(() => count.value * 2)
   const resetar = (val) => {
@@ -38,5 +40,28 @@ export const useCountDown = defineStore('counter', () => {
     loser.value = true;
   }
 
-  return { resetar, reset, setAction, action, finish, setFinish, setLoser, loser, cardStatus, setCardStatus }
+  const setFinishTime = (val) => {
+    finishTime.value = val
+  }
+
+  const setInitTime = (val) => {
+    initTime.value = val
+  }
+
+  return {
+    resetar,
+    reset,
+    setAction,
+    action,
+    finish,
+    setFinish,
+    setLoser,
+    loser,
+    cardStatus,
+    setCardStatus,
+    setFinishTime,
+    finishTime,
+    setInitTime,
+    initTime
+  }
 })

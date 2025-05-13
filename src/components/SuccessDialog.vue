@@ -6,6 +6,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
                 </svg>
                 <span>Você Ganhou!</span>
+                <Score />
             </div>
         </div>
     </Transition>
@@ -13,6 +14,7 @@
 
 <script setup>
 import { ref, watch } from 'vue';
+import Score from './Score.vue'
 
 const props = defineProps({
     status: {
@@ -28,7 +30,7 @@ watch(() => props.status, (newStatus) => {
         show.value = true;
         setTimeout(() => {
             show.value = false;
-        }, 3000);
+        }, 10000);
     }
 });
 </script>
@@ -36,9 +38,11 @@ watch(() => props.status, (newStatus) => {
 <style scoped>
 .dialog-container {
     position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translateX(-50%);
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 120px);
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
 }
 
@@ -57,7 +61,7 @@ watch(() => props.status, (newStatus) => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+    width: 70%;
 }
 
 .check-icon {
@@ -67,30 +71,46 @@ watch(() => props.status, (newStatus) => {
 
 /* Animações */
 .dialog-enter-active {
-    transition: all 0.3s ease-out;
+    animation: bounce-in 0.8s ease-out;
 }
 
 .dialog-leave-active {
-    transition: all 0.2s ease-in;
+    animation: fade-out 0.5s ease-in forwards;
 }
 
-.dialog-enter-from {
-    transform: translate(-50%, -16px);
-    opacity: 0;
+@keyframes bounce-in {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(0.95);
+        opacity: 0.85;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
-.dialog-enter-to {
-    transform: translate(-50%, 0);
-    opacity: 1;
+@keyframes fade-out {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
 }
 
-.dialog-leave-from {
-    transform: translate(-50%, 0);
-    opacity: 1;
+@media (max-width: 425px) {
+    .dialog-content {
+        font-size: 22px;
+    }
 }
-
-.dialog-leave-to {
-    transform: translate(-50%, -16px);
-    opacity: 0;
-}
-</style> 
+</style>

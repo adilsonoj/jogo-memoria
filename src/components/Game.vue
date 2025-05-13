@@ -27,10 +27,8 @@ import { storeToRefs } from 'pinia';
 import { nextTick, watch } from 'vue';
 import SuccessDialog from './SuccessDialog.vue';
 import { Vue3Lottie } from 'vue3-lottie';
-
 import confeti from "../assets/lottie/confeti.json"
 import loserLottie from "../assets/lottie/loser.json"
-
 import { useCountDown } from "../store"
 
 const props = defineProps({
