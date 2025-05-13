@@ -61,7 +61,7 @@ watch(() => props.status, (newStatus) => {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 70%;
+    width: 40%;
 }
 
 .check-icon {
