@@ -2,9 +2,10 @@
 import { ref, onMounted } from 'vue';
 import Heade from './components/Header.vue'
 import Game from './components/Game.vue'
-
+import NotFound from './pages/404.vue'
 const logo = ref('')
 const payload = ref(null)
+const notFound = ref(false)
 
 const fetchConfig = async () => {
   console.log("listando")
@@ -17,6 +18,13 @@ const fetchConfig = async () => {
     }
 
     const response = await fetch(`https://eventplay-api.s1.b4sis.com.br/games/config/${event}`);
+
+
+    if (response.status === 404) {
+      notFound.value = true;
+      return;
+    }
+
     const data = await response.json();
 
     logo.value = data.logo;
@@ -30,10 +38,14 @@ onMounted(() => {
 </script>
 
 <template>
-  
-  <Heade v-if="payload" :logo="logo" :time="payload.timer"/>
-  <Game class="game" :payload="payload" v-if="payload"/>
-  <div class="loading" v-if="!payload">Carregando...</div>
+  <div v-if="notFound">
+    <NotFound />
+  </div>
+  <div v-else>
+    <Heade v-if="payload" :logo="logo" :time="payload.timer"/>
+    <Game class="game" :payload="payload" v-if="payload"/>
+    <div class="loading" v-if="!payload">Carregando...</div>
+  </div>
    
   </template>
 
