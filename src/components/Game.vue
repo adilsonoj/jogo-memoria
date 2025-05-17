@@ -190,17 +190,19 @@ shuffle()
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 2px;
     box-sizing: border-box;
+    
 
 }
 
 .card img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Mantém a proporção da imagem */
+    object-fit: cover; /* Mantém a proporção da imagem */
     max-width: 100%;
     max-height: 100%;
+    border-radius: 5px;
 }
 
 
