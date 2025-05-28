@@ -5,8 +5,8 @@
                 <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
                 </svg>
-                <span>Você Ganhou!</span>
-                <!-- <Score /> -->
+                <span>Você Ganhou!!</span>
+                <Score v-if="withPlacar" />
             </div>
         </div>
     </Transition>
@@ -14,14 +14,20 @@
 
 <script setup>
 import { ref, watch } from 'vue';
-// import Score from './Score.vue'
+import Score from './Score.vue'
 
 const props = defineProps({
     status: {
         type: String,
         default: ''
+    },
+    withPlacar: {
+        type: Boolean,
+        default: false
     }
 });
+
+console.log(props.withPlacar);
 
 const show = ref(false);
 

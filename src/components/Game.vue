@@ -5,7 +5,7 @@
     <div class="loser-lottie" v-if="loser">
         <Vue3Lottie :animationData="loserLottie" style="width: 40%" loop="false"/>
     </div>
-    <SuccessDialog :status="winner && 'success'" />
+    <SuccessDialog :status="winner && 'success'" :with-placar="payload.placar" />
     <div class="grid">
         <div v-for="card in cards" class="card-grid" :class="card.shake" id="card_container">
             <Transition name="flip">
