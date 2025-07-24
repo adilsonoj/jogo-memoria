@@ -28,5 +28,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           script: |
+            cd /etc/app
             sudo docker compose pull jogo-memoria-web
             sudo docker compose up -d jogo-memoria-web
