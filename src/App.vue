@@ -17,7 +17,7 @@ const fetchConfig = async () => {
       return;
     }
 
-    const response = await fetch(`https://eventplay-api.s1.b4sis.com.br/games/config/${event}`);
+    const response = await fetch(`https://eventplay-api.vp1.b4sis.com.br/games/config/${event}`);
 
 
     if (response.status === 404) {
