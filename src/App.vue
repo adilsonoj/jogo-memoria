@@ -28,6 +28,7 @@ const fetchConfig = async () => {
     const data = await response.json();
 
     logo.value = data.logo;
+    
     payload.value = data;
 
   }

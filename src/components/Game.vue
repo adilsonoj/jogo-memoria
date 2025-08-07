@@ -45,8 +45,8 @@ const cards = ref([])
 
 const paserCards = () => {
     let count = 0;
-    logo.value = props.payload.logo
-    for(let i = 0; i < 8; i++){
+    logo.value = props.payload.background
+    for(let i = 0; i <= 8; i++){
         console.log(props.payload[`imagem${i}`]);
         if(props.payload[`imagem${i}`]){
             cards.value.push({
