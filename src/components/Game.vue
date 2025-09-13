@@ -15,7 +15,7 @@
             </Transition>
             <Transition name="flip">
                 <div v-show="!card.open" @click="change(card)" class="card">
-                    <img :src="logo">
+                    <img :src="payload.logo">
                 </div>
             </Transition>
         </div>
